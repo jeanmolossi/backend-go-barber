@@ -5,11 +5,11 @@ import 'express-async-errors';
 
 import cors from 'cors';
 
-import routes from './routes';
-import uploadConfig from './configs/upload';
-import AppError from './errors/AppError';
+import AppError from '@shared/errors/AppError';
+import uploadConfig from '@config/upload';
+import '@shared/infra/typeorm';
 
-import './database';
+import routes from './routes';
 
 const app = express();
 
@@ -28,10 +28,11 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
 
   return response.status(500).json({
     status: 'error',
-    message: 'Internal server error',
+    message: `Internal server error ${err.stack}`,
   });
 });
 
 app.listen(3333, () => {
+  // eslint-disable-next-line no-console
   console.log('>> Server started on 3333');
 });
