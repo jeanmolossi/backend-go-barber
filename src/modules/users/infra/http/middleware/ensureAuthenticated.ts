@@ -33,8 +33,6 @@ export default function ensureAuthenticated(
       id: sub,
     };
 
-    console.log(request.user);
-
     return next();
   } catch (error) {
     throw new AppError('Invalid token', 401);
