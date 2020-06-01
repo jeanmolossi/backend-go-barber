@@ -7,3 +7,8 @@ coverage/
 
 tmp/*
 !tmp/.gitkeep
+
+# MISC
+
+.env
+ormconfig.json
